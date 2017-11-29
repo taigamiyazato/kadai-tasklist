@@ -65,14 +65,11 @@ class TasksController extends Controller
         
         $request->user()->tasks()->create([
             'content' => $request->content,
+            'title' => $request->title,
+            'status' => $request->status,
         ]);
         
-        $task = new Task;
-        $task->content = $request->content;
-        $task->title = $request->title;
-        $task->status = $request->status;
-        $task->save();
-
+    
         return redirect('/');
     }
 
@@ -145,6 +142,6 @@ class TasksController extends Controller
             $task->delete();
         }
 
-        return redirect()->back();
+        return redirect('/');
     }
 }
